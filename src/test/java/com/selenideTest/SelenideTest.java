@@ -1,51 +1,56 @@
 package com.selenideTest;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeEach;
+import packages.PracticeForm;
+import packages.MainMenu;
 import org.junit.jupiter.api.Test;
-public class SelenideTest {
- @BeforeEach
- void begin() {
-       Configuration.pageLoadStrategy = "eager";
-       Configuration.browserSize = "1920х1080";
-       open("https://demoqa.com");
+import packages.TextBox;
 
-     }
+public class SelenideTest {
+  MainMenu mainMenu = new MainMenu();
+  PracticeForm practiceForm = new PracticeForm();
+  TextBox textBox = new TextBox();
 @Test
-  void Card_Elements() {
-  $x("//div[@class='card-body']//h5[text()='Elements']").click();
-  $x("//div[@class='col-12 mt-4 col-md-6']").shouldHave(text("Please select an item from left to start practice."));
+  void CardElements() {
+  mainMenu.openPage()
+          .clickCard("Elements")
+          .clickSuccessful( "Please select an item from left to start practice.");
+
   }
   @Test
-  void demoqa_form(){
-    $x("//div[@class='card-body']//h5[text()='Forms']").click();
-    $x("//div[@class='element-list collapse show']").click();
-    $("#firstName").setValue("Вася");
-    $("#lastName").setValue("Пупкин");
-    $("#userEmail").setValue("qwe@qwe.qwe");
-    $("#userNumber").setValue("9999999999");
-    $x("//label[text()='Male']").click();
-    $x("//label[text()='Music']").click();
-    $("#currentAddress").setValue("kgn");
-    $("#submit").submit();
-    $x("//div[@class='modal-title h4']").shouldHave(text("Thanks for submitting the form"));
+  void DemoqaForm(){
+    mainMenu.openPage()
+            .clickCard("Forms");
+    practiceForm.ShowPracticeForm()
+        .setFirstName("Вася")
+        .setLastName("Пупкин")
+        .setEmail("qwe@qwe.qwe")
+        .setGender("Male")
+        .setUserNumber("9999999999")
+        .setDateBirth("31","July","2008")
+        .setHobbies("Music")
+        .setCurrentAddress("kgn")
+        .сlickRegistration()
+        .checkResult("Student Name", "Вася Пупкин")
+        .checkResult("Student Email", "qwe@qwe.qwe")
+        .checkResult("Gender", "Male")
+        .checkResult("Mobile", "9999999999")
+        .checkResult("Date of Birth", "31 July,2008")
+        .checkResult("Hobbies", "Music")
+        .checkResult("Address", "kgn");
   }
   @Test
   void RegisterBooks() {
-    $x("//div[@class='card-body']//h5[text()='Elements']").click();
-    $x("//li[@class='btn btn-light ']").click();
-    $("#userName").setValue("Вася Пупкин");
-    $("#userEmail").setValue("qwe@qwe.qwe");
-    $("#currentAddress").setValue("qwe");
-    $("#permanentAddress").setValue("ewq");
-    $("#submit").click();
-    $x("//p[@id='name']").shouldHave(text("Вася Пупкин"));
-    $x("//p[@id='email']").shouldHave(text("qwe@qwe.qwe"));
-    $x("//p[@id='currentAddress']").shouldHave(text("qwe"));
-    $x("//p[@id='permanentAddress']").shouldHave(text("ewq"));
+    mainMenu.openPage()
+            .clickCard("Elements");
+    textBox.ClickTextBox()
+            .setUserName("Вася Пупкин")
+            .setUserEmail("qwe@qwe.qwe")
+            .setCurrentAddress("qwe")
+            .setPermanentAddress("ewq")
+            .clickRegistrationTextBox()
+            .checkResultUserName("Вася Пупкин")
+            .checkResultUserEmail("qwe@qwe.qwe")
+            .checkResultCurrentAddress("qwe")
+            .checkResultPermanentAddress("ewq");
   }
 }
