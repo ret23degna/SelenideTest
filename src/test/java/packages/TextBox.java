@@ -4,6 +4,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import com.codeborne.selenide.SelenideElement;
+import org.aeonbits.owner.ConfigFactory;
+import packages.config.PracticeFromConfig;
+import packages.config.TextBoxConfig;
 
 public class TextBox {
   private SelenideElement
@@ -17,45 +20,38 @@ public class TextBox {
       finaluserEmail =  $x("//p[@id='email']"),
       finalcurrentAddress = $x("//p[@id='currentAddress']"),
       finalpermanentAddress =  $x("//p[@id='permanentAddress']");
+  private TextBoxConfig config = ConfigFactory.create(TextBoxConfig.class, System.getProperties());
   public  TextBox  ClickTextBox() {
     clickTextBox.click();
     return this;
   }
 
-  public  TextBox  setUserName(String value) {
-    userName.setValue(value);
+  public  TextBox  setUserName() {
+    userName.setValue(config.getUserName());
     return this;
   }
-  public  TextBox  setUserEmail(String value) {
-    userEmail.setValue(value);
+  public  TextBox  setUserEmail() {
+    userEmail.setValue(config.getUserEmail());
     return this;
   }
-  public  TextBox  setCurrentAddress(String value) {
-    currentAddress.setValue(value);
+  public  TextBox  setCurrentAddress() {
+    currentAddress.setValue(config.getCurrentAddress());
     return this;
   }
-  public  TextBox  setPermanentAddress(String value) {
-    permanentAddress.setValue(value);
+  public  TextBox  setPermanentAddress() {
+    permanentAddress.setValue(config.getPermanentAddress());
     return this;
   }
   public  TextBox  clickRegistrationTextBox() {
     submit.click();
     return this;
   }
-  public TextBox checkResultUserName( String value) {
-    finalUserName.shouldHave(text(value));
-    return this;
-  }
-  public TextBox checkResultUserEmail( String value) {
-    finaluserEmail.shouldHave(text(value));
-    return this;
-  }
-  public TextBox checkResultCurrentAddress( String value) {
-    finalcurrentAddress.shouldHave(text(value));
-    return this;
-  }
-  public TextBox checkResultPermanentAddress( String value) {
-    finalpermanentAddress.shouldHave(text(value));
+  public TextBox checkResult( ) {
+    finalUserName.shouldHave(text(config.getUserName()));
+    finaluserEmail.shouldHave(text(config.getUserEmail()));
+    finalcurrentAddress.shouldHave(text(config.getCurrentAddress()));
+    finalpermanentAddress.shouldHave(text(config.getPermanentAddress()));
     return this;
   }
 }
+

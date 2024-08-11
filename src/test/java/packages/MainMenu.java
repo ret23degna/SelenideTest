@@ -8,22 +8,31 @@ import static com.codeborne.selenide.Selenide.open;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import org.aeonbits.owner.ConfigFactory;
+import packages.config.MainMenuConfig;
+import packages.config.PracticeFromConfig;
 
 public class MainMenu {
   private SelenideElement clickSuc = $x("//div[@class='col-12 mt-4 col-md-6']");
   private ElementsCollection cardsBody = $$x("//div[@class='card-body']");
+
+  private MainMenuConfig config = ConfigFactory.create(MainMenuConfig.class, System.getProperties());
   public  MainMenu openPage() {
-    Configuration.pageLoadStrategy = "eager";
-    Configuration.browserSize = "1920х1080";
-    open("https://demoqa.com");
+    Configuration.pageLoadStrategy = config.getPageLoadStrategy() ;
+    Configuration.browserSize = config.getbrowserSize();
+    open( config.getOpen());
     return this;
   }
-  public  MainMenu  clickCard(String value) {
-    cardsBody.findBy(matchText(value)).click();;
+  public  MainMenu  clickCardElements() {
+    cardsBody.findBy(matchText(config.getClickCardElements())).click();;
     return this;
   }
-  public  MainMenu  clickSuccessful (String value) {
-    clickSuc.shouldHave(text(value));
+  public  MainMenu  clickCardForms() {
+    cardsBody.findBy(matchText(config.getClickCardForms())).click();;
+    return this;
+  }
+  public  MainMenu  clickSuccessful () {
+    clickSuc.shouldHave(text(config.getClickSuccessful()));
     return this;
   }
 }

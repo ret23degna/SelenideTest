@@ -12,45 +12,38 @@ public class SelenideTest {
 @Test
   void CardElements() {
   mainMenu.openPage()
-          .clickCard("Elements")
-          .clickSuccessful( "Please select an item from left to start practice.");
+          .clickCardElements()
+          .clickSuccessful();
 
   }
   @Test
   void DemoqaForm(){
     mainMenu.openPage()
-            .clickCard("Forms");
+            .clickCardForms();
     practiceForm.ShowPracticeForm()
-        .setFirstName("Вася")
-        .setLastName("Пупкин")
-        .setEmail("qwe@qwe.qwe")
-        .setGender("Male")
-        .setUserNumber("9999999999")
-        .setDateBirth("31","July","2008")
-        .setHobbies("Music")
-        .setCurrentAddress("kgn")
+        .setFirstName()
+        .setLastName()
+        .setEmail()
+        .setGender()
+        .setUserNumber()
+        .setDateBirth()
+        .setHobbies()
+        .setCurrentAddress()
         .сlickRegistration()
-        .checkResult("Student Name", "Вася Пупкин")
-        .checkResult("Student Email", "qwe@qwe.qwe")
-        .checkResult("Gender", "Male")
-        .checkResult("Mobile", "9999999999")
-        .checkResult("Date of Birth", "31 July,2008")
-        .checkResult("Hobbies", "Music")
-        .checkResult("Address", "kgn");
+        .checkResult();
+
   }
   @Test
   void RegisterBooks() {
     mainMenu.openPage()
-            .clickCard("Elements");
+            .clickCardElements();
     textBox.ClickTextBox()
-            .setUserName("Вася Пупкин")
-            .setUserEmail("qwe@qwe.qwe")
-            .setCurrentAddress("qwe")
-            .setPermanentAddress("ewq")
+            .setUserName()
+            .setUserEmail()
+            .setCurrentAddress()
+            .setPermanentAddress()
             .clickRegistrationTextBox()
-            .checkResultUserName("Вася Пупкин")
-            .checkResultUserEmail("qwe@qwe.qwe")
-            .checkResultCurrentAddress("qwe")
-            .checkResultPermanentAddress("ewq");
+            .checkResult();
+
   }
 }
