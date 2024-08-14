@@ -4,13 +4,25 @@ import packages.PracticeForm;
 import packages.MainMenu;
 import org.junit.jupiter.api.Test;
 import packages.TextBox;
+import packages.utilss.RandomUtils;
 
 public class SelenideTest {
 
   MainMenu mainMenu = new MainMenu();
   PracticeForm practiceForm = new PracticeForm();
   TextBox textBox = new TextBox();
-
+  RandomUtils random = new RandomUtils();
+  String firstName = random.firstName();
+  String lastName = random.lastName();
+  String email = random.emailAddress();
+  String number = random.phoneNumber();
+  String сurrentAddress = random.Address();
+  String permanentAddress = random.Address();
+  String gender = random.genderRandomer();
+  String hobbies = random.hobbiesRandomer();
+  String day = random.dayRandomer();
+  String month = random.monthRandomer();
+  String year = random.yearRandomer();
 
   @Test
   void CardElements() {
@@ -21,26 +33,21 @@ public class SelenideTest {
 
   @Test
   void DemoqaForm() {
+
     mainMenu.openPage()
         .clickCard("Forms");
     practiceForm.ShowPracticeForm()
-        .setFirstName("Вася")
-        .setLastName("Пупкин")
-        .setEmail("qwe@qwe.qwe")
-        .setGender("Male")
-        .setUserNumber("9999999999")
-        .setDateBirth("13", "August", "2024")
-        .setHobbies("Music")
-        .setCurrentAddress("kgn")
+        .setFirstName(firstName)
+        .setLastName(lastName)
+        .setEmail(email)
+        .setGender(gender)
+        .setUserNumber(number)
+        .setDateBirth(day, month, year)
+        .setHobbies(hobbies)
+        .setCurrentAddress(сurrentAddress)
         .сlickRegistration()
-        .checkResult("Student Name", "Вася Пупкин")
-        .checkResult("Student Email", "qwe@qwe.qwe")
-        .checkResult("Gender", "Male")
-        .checkResult("Mobile", "9999999999")
-        .checkResult("Date of Birth", "13 August,2024")
-        .checkResult("Hobbies", "Music")
-        .checkResult("Address", "kgn");
-
+        .checkResult(firstName, lastName, email, gender, number, day, month, year, hobbies,
+            сurrentAddress);
   }
 
   @Test
@@ -48,12 +55,12 @@ public class SelenideTest {
     mainMenu.openPage()
         .clickCard("Elements");
     textBox.ClickTextBox()
-        .setUserName("Вася Пупкин")
-        .setUserEmail("qwe@qwe.qwe")
-        .setCurrentAddress("qwe")
-        .setPermanentAddress("йцу")
+        .setUserName(firstName)
+        .setUserEmail(email)
+        .setCurrentAddress(сurrentAddress)
+        .setPermanentAddress(permanentAddress)
         .clickRegistrationTextBox()
-        .checkResult("Вася Пупкин", "qwe@qwe.qwe", "qwe", "йцу");
+        .checkResult(firstName, email, сurrentAddress, permanentAddress);
 
   }
 

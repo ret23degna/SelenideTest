@@ -5,8 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 import com.codeborne.selenide.SelenideElement;
-import org.aeonbits.owner.ConfigFactory;
-import packages.config.TextBoxConfig;
+
 
 public class TextBox {
 
@@ -21,7 +20,7 @@ public class TextBox {
       finaluserEmail = $x("//p[@id='email']"),
       finalcurrentAddress = $x("//p[@id='currentAddress']"),
       finalpermanentAddress = $x("//p[@id='permanentAddress']");
-  private TextBoxConfig config = ConfigFactory.create(TextBoxConfig.class, System.getProperties());
+
 
   public TextBox ClickTextBox() {
     clickTextBox.click();

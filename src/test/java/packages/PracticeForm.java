@@ -6,9 +6,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 import com.codeborne.selenide.SelenideElement;
-import org.aeonbits.owner.ConfigFactory;
 import packages.components.CalendarComponent;
-import packages.config.PracticeFromConfig;
+
 
 public class PracticeForm {
 
@@ -24,10 +23,11 @@ public class PracticeForm {
       currentAddress = $("#currentAddress"),
       submit = $("#submit");
 
+  String[] checkResult = {"Student Name", "Student Email", "Gender", "Mobile", "Date of Birth",
+      "Hobbies", "Address"};
+
   private CalendarComponent calendarComponent = new CalendarComponent();
 
-  private PracticeFromConfig config = ConfigFactory.create(PracticeFromConfig.class,
-      System.getProperties());
 
   public PracticeForm ShowPracticeForm() {
     showPracticeForm.click();
@@ -82,8 +82,17 @@ public class PracticeForm {
     return this;
   }
 
-  public PracticeForm checkResult(String value1, String value2) {
-    $(".table-responsive").$(byText(value1)).parent().shouldHave(text(value2));
+  public PracticeForm checkResult(String firstName, String lastName, String email, String gender,
+      String number, String day, String month, String year, String hobbies, String сurrentAddress) {
+    $(".table-responsive").$(byText(checkResult[0])).parent()
+        .shouldHave(text(firstName + " " + lastName));
+    $(".table-responsive").$(byText(checkResult[1])).parent().shouldHave(text(email));
+    $(".table-responsive").$(byText(checkResult[2])).parent().shouldHave(text(gender));
+    $(".table-responsive").$(byText(checkResult[3])).parent().shouldHave(text(number));
+    $(".table-responsive").$(byText(checkResult[4])).parent()
+        .shouldHave(text(day + " " + month + "," + year));
+    $(".table-responsive").$(byText(checkResult[5])).parent().shouldHave(text(hobbies));
+    $(".table-responsive").$(byText(checkResult[6])).parent().shouldHave(text(сurrentAddress));
     return this;
   }
 }
