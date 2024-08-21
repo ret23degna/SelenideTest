@@ -1,5 +1,7 @@
 package com.selenideTest;
 
+import io.qameta.allure.selenide.AllureSelenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import packages.PracticeForm;
 import packages.MainMenu;
 import org.junit.jupiter.api.Test;
@@ -26,6 +28,7 @@ public class SelenideTest {
 
   @Test
   void CardElements() {
+    SelenideLogger.addListener("allure", new AllureSelenide());
     mainMenu.openPage()
         .clickCard("Elements")
         .clickSuccessful("Please select an item from left to start practice.");
@@ -33,7 +36,7 @@ public class SelenideTest {
 
   @Test
   void DemoqaForm() {
-
+    SelenideLogger.addListener("allure", new AllureSelenide());
     mainMenu.openPage()
         .clickCard("Forms");
     practiceForm.ShowPracticeForm()
@@ -52,6 +55,7 @@ public class SelenideTest {
 
   @Test
   void RegisterBooks() {
+    SelenideLogger.addListener("allure", new AllureSelenide());
     mainMenu.openPage()
         .clickCard("Elements");
     textBox.ClickTextBox()
