@@ -9,7 +9,7 @@ public interface MainMenuConfig extends Config {
   String getPageLoadStrategy();
 
   @Key("BrowserSize")
-  @DefaultValue("1920х1080")
+  @DefaultValue("3840×2160")
   String getbrowserSize();
 
   @Key("Open")
