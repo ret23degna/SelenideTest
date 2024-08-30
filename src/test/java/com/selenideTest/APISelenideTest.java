@@ -43,7 +43,6 @@ public class APISelenideTest extends BaseTest {
     getWebDriver().manage().addCookie(cookieToken);
     getWebDriver().manage().addCookie(cookieExpires);
     getWebDriver().manage().addCookie(cookieUserID);
-    getWebDriver().navigate().refresh();
     SelenideLogger.addListener("allure", new AllureSelenide());
     step("Открываем demoqa", () -> {
       open("/profile");

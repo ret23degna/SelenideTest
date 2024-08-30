@@ -18,7 +18,7 @@ public class AllureSelenideTest {
   String lastName = random.lastName();
   String email = random.emailAddress();
   String number = random.phoneNumber();
-  String сurrentAddress = random.Address();
+  String currentAddress = random.Address();
   String permanentAddress = random.Address();
   String gender = random.genderRandomer();
   String hobbies = random.hobbiesRandomer();
@@ -68,14 +68,14 @@ public class AllureSelenideTest {
       practiceForm.setHobbies(hobbies);
     });
     step("Вводим адрес", () -> {
-      practiceForm.setCurrentAddress(сurrentAddress);
+      practiceForm.setCurrentAddress(currentAddress);
     });
     step("клик по кнопке регитсрации", () -> {
       practiceForm.сlickRegistration();
     });
     step("Проверяем результат", () -> {
       practiceForm.checkResult(firstName, lastName, email, gender, number, day, month, year,
-          hobbies, сurrentAddress);
+          hobbies, currentAddress);
     });
 
 
@@ -90,10 +90,10 @@ public class AllureSelenideTest {
     steps.ClickTextBox();
     steps.setUserName(firstName);
     steps.setUserEmail(email);
-    steps.setCurrentAddress(сurrentAddress);
+    steps.setCurrentAddress(currentAddress);
     steps.setPermanentAddress(permanentAddress);
     steps.clickRegistrationTextBox();
-    steps.checkResult(firstName, email, сurrentAddress, permanentAddress);
+    steps.checkResult(firstName, email, currentAddress, permanentAddress);
 
   }
 
