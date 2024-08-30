@@ -40,7 +40,7 @@ public class APISelenideTest extends BaseTest {
     regParams.setUserId(cookieUserIDValue);
     regParams.setCollectionOfIsbns(BookRestApi.generationISBNBook());
     Book.addBook(responseUser, cookieTokenValue, regParams);
-    Configuration.browserSize ="3840×2160";
+    Configuration.browserSize ="1920x1080";
     open("/images/Toolsqa.jpg");
     getWebDriver().manage().addCookie(cookieToken);
     getWebDriver().manage().addCookie(cookieExpires);
