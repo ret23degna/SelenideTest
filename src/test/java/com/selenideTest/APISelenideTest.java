@@ -9,6 +9,7 @@ import static io.qameta.allure.Allure.step;
 
 import RESTAPI.AuthorizationRestApi;
 import RESTAPI.BookRestApi;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.response.Response;
@@ -39,6 +40,7 @@ public class APISelenideTest extends BaseTest {
     regParams.setUserId(cookieUserIDValue);
     regParams.setCollectionOfIsbns(BookRestApi.generationISBNBook());
     Book.addBook(responseUser, cookieTokenValue, regParams);
+    Configuration.browserSize ="3840×2160";
     open("/images/Toolsqa.jpg");
     getWebDriver().manage().addCookie(cookieToken);
     getWebDriver().manage().addCookie(cookieExpires);

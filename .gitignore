@@ -2,4 +2,4 @@ target/
 src/main/
 .idea/
 build/
-allure/
+.allure/
