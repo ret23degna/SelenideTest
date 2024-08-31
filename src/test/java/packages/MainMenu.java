@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
 import com.codeborne.selenide.ElementsCollection;
@@ -21,6 +22,7 @@ public class MainMenu extends BaseTest {
   public MainMenu openPage() {
     Base();
     open("/");
+    getWebDriver().manage().window().maximize();
     return this;
   }
 
